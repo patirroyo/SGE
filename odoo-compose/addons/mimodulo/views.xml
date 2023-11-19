@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- add ventas model -->
+	<record id="view_ventas_tree" model="ir.ui.view">
+		<field name="name">ventas.tree</field>
+		<field name="model">ventas_cole.ventas</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="fecha"/>
+				<field name="cliente"/>
+				<field name="cantidad"/>
+				<field name="precio"/>
+				<field name="total"/>
+			</tree>
+		</field>
+	</record>
+	<!-- add action ventas tree -->
+	<record id="action_ventas_tree" model="ir.actions.act_window">
+		<field name="name">Ventas</field>
+		<field name="res_model">ventas_cole.ventas</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<!-- add action ventas form -->
+	<record id="action_ventas_form" model="ir.actions.act_window">
+		<field name="name">Ventas</field>
+		<field name="res_model">ventas_cole.ventas</field>
+		<field name="view_mode">form</field>
+	</record>
+
+
+
+	<!-- add ventas form -->
+	<record id="view_ventas_form" model="ir.ui.view">
+		<field name="name">ventas.form</field>
+		<field name="model">ventas_cole.ventas</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="name"/>
+						<field name="fecha"/>
+						<field name="cliente"/>
+						<field name="cantidad"/>
+						<field name="precio"/>
+						<field name="total"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- add vendedores form -->
+	<record id="view_vendedores_form" model="ir.ui.view">
+		<field name="name">vendedores.form</field>
+		<field name="model">ventas_cole.vendedores</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<group>
+						<field name="nombre"/>
+						<field name="apellido"/>
+						<field name="dni"/>
+						<field name="ventas"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!-- add search dni field -->
+	<record id="view_vendedores_search" model="ir.ui.view">
+		<field name="name">vendedores.search</field>
+		<field name="model">ventas_cole.vendedores</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="dni"/>
+			</search>
+		</field>
+	</record>
+	<!-- add vendedores list-->
+	<record id="view_vendedores_tree" model="ir.ui.view">
+		<field name="name">vendedores.tree</field>
+		<field name="model">ventas_cole.vendedores</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="nombre"/>
+				<field name="apellido"/>
+				<field name="dni"/>
+				<field name="ventas"/>
+			</tree>
+		</field>
+	</record>
+	<!-- add vendedores action tree-->
+	<record id="action_vendedores_tree" model="ir.actions.act_window">
+		<field name="name">Vendedores</field>
+		<field name="res_model">ventas_cole.vendedores</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+    <!-- add lugares list-->
+    <record id="view_lugares_tree" model="ir.ui.view">
+        <field name="name">lugares.tree</field>
+        <field name="model">ventas_cole.lugares</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="nombre"/>
+                <field name="direccion"/>
+                <field name="telefono"/>
+            </tree>
+        </field>
+    </record>
+    <!-- add lugares action tree-->
+    <record id="action_lugares_tree" model="ir.actions.act_window">
+        <field name="name">Lugares</field>
+        <field name="res_model">ventas_cole.lugares</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+<!-- menu tree esto nos añade el acceso directo, todo esto se tranforma en una fila de la base de datos de la tabla actions.act_window LAS ACCIONES DEBEN ESTAR DEFINIDAS ANTES QUE LOS MENUITEMS-->
+	<menuitem id="menu_ventas" name="Ventas"/>
+	<menuitem id="menu_ventas_tree" name="Ventas" parent="menu_ventas" action="action_ventas_tree"/>
+	<!--<menuitem id="menu_ventas_form" name="Ventas" parent="menu_ventas" action="action_ventas_form"/>-->
+	<!-- menu vendedores-->
+	<menuitem id="menu_vendedores_tree" name="Vendedores" parent="menu_ventas" action="action_vendedores_tree"/>
+    <!-- menu lugares-->
+    <menuitem id="menu_lugares_tree" name="Lugares" parent="menu_ventas" action="action_lugares_tree"/>
+</odoo>

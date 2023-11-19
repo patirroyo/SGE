@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="bicicleta_action" model="ir.actions.act_window">
+		<field name="name">Action bicicleta</field>
+		<field name="res_model">u3a2.bicicleta</field>
+		<field name="view_mode">tree,form,calendar</field>
+	</record>
+
+	<record id="view_bicicleta_tree" model="ir.ui.view" >
+		<field name="name">bicicleta.tree</field>
+		<field name="model">u3a2.bicicleta</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="codigo"/>
+				<field name="nombre"/>
+				<field name="vendida"/>
+				<field name="talla"/>
+				<field name="tipo"/>
+				<field name="marca"/>
+				<field name="precio"/>
+				<field name="fecha_recepcion"/>
+				<field name="fecha_venta"/>
+				<field name="cliente" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="bicicleta_form" model="ir.ui.view" >
+		<field name="name">field_value</field>
+		<field name="model">u3a2.bicicleta</field>
+		<field name="arch" type="xml">
+			<form string="bicicleta">
+				<sheet>
+					<group>
+						<field name="codigo"/>
+						<field name="nombre"/>
+						<field name="vendida"/>
+						<field name="talla"/>
+						<field name="tipo"/>
+						<field name="marca"/>
+						<field name="precio"/>
+						<field name="fecha_recepcion"/>
+						<field name="fecha_venta"/>
+						<field name="cliente"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="bicicleta_calendar" model="ir.ui.view" >
+		<field name="name">bicicleta.calendar</field>
+		<field name="model">u3a2.bicicleta</field>
+		<field name="arch" type="xml">
+			<calendar string="ventas" date_start="fecha_recepcion" date_stop="fecha_venta">
+				<field name="nombre"/>
+			</calendar>
+		</field>
+	</record>
+	<record id="bicicleta_search" model="ir.ui.view">
+		<field name="name">bicicleta.search</field>
+		<field name="model">u3a2.bicicleta</field>
+		<field name="arch" type="xml">
+			<search string="vendedor">
+				<field name="nombre" />
+				<field name="talla" />
+				<field name="tipo" />
+				<field name="marca" />
+				<field name="precio" />
+				<filter name="vendidas" string="vendidas" domain="[('vendida', '=', True)]"  />
+				<group string="Zona de agrupamientos">
+					<filter name="agrupar por marca"
+							string="agrupar por marca"
+							context="{'group_by':'marca'}"/>
+				</group>
+			</search>
+		</field>
+	</record>
+	<record id="marca_action" model="ir.actions.act_window">
+		<field name="name">Action marca</field>
+		<field name="res_model">u3a2.marca</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="view_marca_tree" model="ir.ui.view" >
+		<field name="name">marca.tree</field>
+		<field name="model">u3a2.marca</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="codigo"/>
+				<field name="nombre"/>
+				<field name="ano_creacion"/>
+				<field name="descripcion"/>
+				<field name="bicicleta" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="marca_form" model="ir.ui.view" >
+		<field name="name">field_value</field>
+		<field name="model">u3a2.marca</field>
+		
+		<field name="arch" type="xml">
+			<form string="marca">
+				<sheet>
+					<group>
+						<field name="codigo"/>
+						<field name="nombre"/>
+						<field name="ano_creacion"/>
+						<field name="descripcion"/>
+						<field name="bicicleta"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="tienda_action" model="ir.actions.act_window">
+		<field name="name">Tienda</field>
+		<field name="res_model">u3a2.tienda</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record id="view_tienda_tree" model="ir.ui.view" >
+		<field name="name">tienda.tree</field>
+		<field name="model">u3a2.tienda</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name"/>
+				<field name="cif"/>
+				<field name="titular"/>
+				<field name="tipo"/>
+				<field name="direccion"/>
+			</tree>
+		</field>
+	</record>
+	<record id="cliente_action" model="ir.actions.act_window">
+		<field name="name">Cliente</field>
+		<field name="res_model">u3a2.cliente</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record id="view_cliente_tree" model="ir.ui.view" >
+		<field name="name">cliente.tree</field>
+		<field name="model">u3a2.cliente</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="nombreEntidad"/>
+				<field name="edad"/>
+				<field name="bicicleta" />
+			</tree>
+		</field>
+	</record>
+	<record id="cliente_form" model="ir.ui.view" >
+		<field name="name">field_value</field>
+		<field name="model">u3a2.cliente</field>
+		<field name="arch" type="xml">
+			<form string="cliente">
+				<sheet>
+					<group>
+						<field name="nombreEntidad"/>
+						<field name="edad"/>
+						<field name="bicicleta"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!--Definir los menuitems al final-->
+	<menuitem
+		id="u3a2"
+		name="u3a2"
+		sequence="10"/>
+	<menuitem
+		id="bicicleta"
+		name="bicicleta"
+		action="bicicleta_action"
+		parent="u3a2"
+		sequence="10"/>
+	<menuitem
+		id="marca"
+		name="marca"
+		action="marca_action"
+		parent="u3a2"
+		sequence="10"/>
+	<menuitem
+		id="tienda"
+		name="tienda"
+		action="tienda_action"
+		parent="u3a2"
+		sequence="10"/>
+	<menuitem
+		id="cliente"
+		name="cliente"
+		action="cliente_action"
+		parent="u3a2"
+		sequence="10"/>
+
+</odoo>
