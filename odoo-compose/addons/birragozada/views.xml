@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="cerveza_action" model="ir.actions.act_window">
+		<field name="name">Cervezas</field>
+		<field name="res_model">birragozada.cerveza</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+	<record id="view_cerveza_tree" model="ir.ui.view">
+		<field name="name">cerveza.tree</field>
+		<field name="model">birragozada.cerveza</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="nombre"/>
+				<field name="tipo"/>
+				<field name="descripcion"/>
+				<field name="contenido_alcoholico"/>
+				<field name="precio_unidad"/>
+				<field name="volumen_unidad"/>
+				<field name="disponible"/>
+				<field name="lote"/>
+				<field name="distribuidor"/>
+				<field name="ingrediente" widget="many2many_tags"/>
+			</tree>
+		</field>
+	</record>
+	<record id="view_cerveza_form" model="ir.ui.view">
+		<field name="name">cerveza.form</field>
+		<field name="model">birragozada.cerveza</field>
+		<field name="arch" type="xml">
+			<form string="Cerveza">
+				<sheet>
+					<group>
+						<field name="nombre"/>
+						<field name="tipo"/>
+						<field name="descripcion"/>
+						<field name="contenido_alcoholico"/>
+						<field name="precio_unidad"/>
+						<field name="volumen_unidad"/>
+						<field name="disponible"/>
+						<field name="lote"/>
+						<field name="distribuidor"/>
+						<field name="ingrediente"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="cerveza_search" model="ir.ui.view">
+		<field name="name">cerveza.search</field>
+		<field name="model">birragozada.cerveza</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="tipo" />
+				<field name="contenido_alcoholico" />
+				<field name="volumen_unidad" />
+				<field name="precio_unidad" />
+				<filter name="agotadas" string="Cervezas agotadas" domain="[('disponible', '=', False)]"  />
+				<filter name="disponibles" string="Cervezas disponibles" domain="[('disponible', '=', True)]"  />
+				
+			</search>
+		</field>
+	</record>
+
+	<record id="lote_action" model="ir.actions.act_window">
+		<field name="name">Lotes de Produccion</field>
+		<field name="res_model">birragozada.lote</field>
+		<field name="view_mode">tree,form,calendar</field>
+	</record>
+
+	<record id="view_lote_tree" model="ir.ui.view">
+		<field name="name">lote.tree</field>
+		<field name="model">birragozada.lote</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="fecha_inicio_produccion"/>
+				<field name="fecha_estimada_finalizacion"/>
+				<field name="cantidad_producida"/>
+				<field name="estado"/>
+				<field name="cerveza"/>
+			</tree>
+		</field>
+	</record>
+	<record id="view_lote_form" model="ir.ui.view">
+		<field name="name">lote.form</field>
+		<field name="model">birragozada.lote</field>
+		<field name="arch" type="xml">
+			<form string="Lote de Producción">
+				<sheet>
+					<group>
+						<field name="fecha_inicio_produccion"/>
+						<field name="fecha_estimada_finalizacion"/>
+						<field name="cantidad_producida"/>
+						<field name="estado"/>
+						<field name="cerveza"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="lote_calendar" model="ir.ui.view" >
+		<field name="name">lote.calendar</field>
+		<field name="model">birragozada.lote</field>
+		<field name="arch" type="xml">
+			<calendar string="Lotes de producción" date_start="fecha_inicio_produccion" date_stop="fecha_estimada_finalizacion">
+				<field name="cerveza"/>
+			</calendar>
+		</field>
+	</record>
+	<record id="ingrediente_action" model="ir.actions.act_window">
+		<field name="name">Ingredientes</field>
+		<field name="res_model">birragozada.ingrediente</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record id="view_ingrediente_tree" model="ir.ui.view">
+		<field name="name">ingrediente.tree</field>
+		<field name="model">birragozada.ingrediente</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="nombre"/>
+				<field name="tipo"/>
+				<field name="cantidad"/>
+			</tree>
+		</field>
+	</record>
+	<record id="view_ingrediente_form" model="ir.ui.view">
+		<field name="name">ingrediente.form</field>
+		<field name="model">birragozada.ingrediente</field>
+		<field name="arch" type="xml">
+			<form string="Ingrediente">
+				<sheet>
+					<group>
+						<field name="nombre"/>
+						<field name="tipo"/>
+						<field name="cantidad"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="empaquetado_action" model="ir.actions.act_window">
+		<field name="name">Empaquetado</field>
+		<field name="res_model">birragozada.empaquetado</field>
+		<field name="view_mode">tree,form,calendar</field>
+	</record>
+
+	<record id="view_empaquetado_tree" model="ir.ui.view">
+		<field name="name">empaquetado.tree</field>
+		<field name="model">birragozada.empaquetado</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="fecha_empaquetado"/>
+				<field name="lote"/>
+				<field name="cantidad_empaquetada"/>
+			</tree>
+		</field>
+	</record>
+	<record id="view_empaquetado_form" model="ir.ui.view">
+		<field name="name">empaquetado.form</field>
+		<field name="model">birragozada.empaquetado</field>
+		<field name="arch" type="xml">
+			<form string="Empaquetado">
+				<sheet>
+					<group>
+						<field name="fecha_empaquetado"/>
+						<field name="lote"/>
+						<field name="cantidad_empaquetada"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="empaquetado_calendar" model="ir.ui.view" >
+		<field name="name">empaquetado.calendar</field>
+		<field name="model">birragozada.empaquetado</field>
+		<field name="arch" type="xml">
+			<calendar string="Empaquetados" date_start="fecha_empaquetado">
+				<field name="lote"/>
+			</calendar>
+		</field>
+	</record>
+
+	<record id="distribuidor_action" model="ir.actions.act_window">
+		<field name="name">Distribuidor</field>
+		<field name="res_model">birragozada.distribuidor</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="view_distribuidor_tree" model="ir.ui.view">
+		<field name="name">distribuidor.tree</field>
+		<field name="model">birragozada.distribuidor</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="nombre"/>
+				<field name="direccion"/>
+				<field name="telefono"/>
+				<field name="cerveza" widget="many2many_tags"/>
+			</tree>
+		</field>
+	</record>
+	<record id="view_distribuidor_form" model="ir.ui.view">
+		<field name="name">distribuidor.form</field>
+		<field name="model">birragozada.distribuidor</field>
+		<field name="arch" type="xml">
+			<form string="Distribuidor">
+				<sheet>
+					<group>
+						<field name="nombre"/>
+						<field name="direccion"/>
+						<field name="telefono"/>
+						<field name="cerveza" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<!--Definir los menuitems al final-->
+	<menuitem
+		id="menu_birragozada"
+		name="Birragozada"
+		sequence="10"/>
+	<menuitem
+		id="cerveza_menu"
+		name="Cervezas"
+		action="cerveza_action"
+		parent="menu_birragozada"
+		sequence="10"/>
+	<menuitem
+		id="lote_menu"
+		name="Lote de produccion"
+		action="lote_action"
+		parent="menu_birragozada"
+		sequence="10"/>
+	<menuitem
+		id="ingrediente_menu"
+		name="Ingredientes"
+		action="ingrediente_action"
+		parent="menu_birragozada"
+		sequence="10"/>
+	<menuitem
+		id="empaquetado_menu"
+		name="Empaquetado"
+		action="empaquetado_action"
+		parent="menu_birragozada"
+		sequence="10"/>
+	<menuitem
+		id="distribuidor_menu"
+		name="Distribuidor"
+		action="distribuidor_action"
+		parent="menu_birragozada"
+		sequence="10"/>
+
+</odoo>
