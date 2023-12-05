@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "u3a2",
-    'summary': """ejercicios con dos clases y una relacion uno a muchos""",
+    'name': "u3a3",
+    'summary': """Part 2""",
     'description': """
         Modulo para aprobar la tarea:
+        Completa el módulo original con los siguientes aspectos:
+1. Añade en una de las clases una función que calcule la media de una serie de valores enteros almacenados en los registros.
+2. Cree una clase hija que herede funcionalidades y añada otras nuevas.
+3. Añada un logotipo al módulo.
+
             
     """,
     'author': "Alberto Saz",
@@ -16,7 +21,7 @@
     'version': '0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'modulo_simple-main', 'basemodulo'],
 
     # always loaded
     'data': [
