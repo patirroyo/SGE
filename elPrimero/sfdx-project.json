@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "Mi_primer_salesforce",
+  "name": "elPrimero",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "58.0"
