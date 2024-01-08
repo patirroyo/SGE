@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="moneda_action" model="ir.actions.act_window">
+		<field name="name">Action moneda</field>
+		<field name="res_model">durhos.moneda</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="view_moneda_tree" model="ir.ui.view" >
+		<field name="name">moneda.tree</field>
+		<field name="model">durhos.moneda</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="codigo"/>
+				<field name="es_variante"/>
+				<field name="desc_error"/>
+				<field name="molde"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="moneda_form" model="ir.ui.view" >
+		<field name="name">field_value</field>
+		<field name="model">durhos.moneda</field>
+		
+		<field name="arch" type="xml">
+			<form string="moneda">
+				<sheet>
+					<group>
+						<field name="codigo"/>
+						<field name="es_variante"/>
+						<field name="desc_error"/>
+						<field name="molde"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="molde_action" model="ir.actions.act_window">
+		<field name="name">Action molde</field>
+		<field name="res_model">durhos.molde</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="view_molde_tree" model="ir.ui.view" >
+		<field name="name">molde.tree</field>
+		<field name="model">durhos.molde</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="codigo"/>
+				<field name="ano_acunacion"/>
+				<field name="descripcion"/>
+				<field name="fecha_estrellas"/>
+				<field name="moneda"/>
+				<field name="modelo"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="molde_form" model="ir.ui.view" >
+		<field name="name">field_value</field>
+		<field name="model">durhos.molde</field>
+		
+		<field name="arch" type="xml">
+			<form string="molde">
+				<sheet>
+					<group>
+						<field name="codigo"/>
+						<field name="ano_acunacion"/>
+						<field name="descripcion"/>
+						<field name="fecha_estrellas"/>
+						<field name="moneda"/>
+						<field name="modelo"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="modelo_action" model="ir.actions.act_window">
+		<field name="name">Action modelo</field>
+		<field name="res_model">durhos.modelo</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record id="view_modelo_tree" model="ir.ui.view" >
+		<field name="name">modelo.tree</field>
+		<field name="model">durhos.modelo</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="cod"/>
+				<field name="valor_facial"/>
+				<field name="unidad_monetaria"/>
+				<field name="diametro"/>
+				<field name="peso"/>
+				<field name="descripcion"/>
+				<field name="molde"/>
+				<field name="metal"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="modelo_form" model="ir.ui.view" >
+		<field name="name">field_value</field>
+		<field name="model">durhos.modelo</field>
+		
+		<field name="arch" type="xml">
+			<form string="molde">
+				<sheet>
+					<group>
+						<field name="cod"/>
+						<field name="valor_facial"/>
+						<field name="unidad_monetaria"/>
+						<field name="diametro"/>
+						<field name="peso"/>
+						<field name="descripcion"/>
+						<field name="molde"/>
+						<field name="metal"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="metal_action" model="ir.actions.act_window">
+		<field name="name">Action metal</field>
+		<field name="res_model">durhos.metal</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record id="view_metal_tree" model="ir.ui.view" >
+		<field name="name">metal.tree</field>
+		<field name="model">durhos.metal</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="nombre"/>
+				
+			</tree>
+		</field>
+	</record>
+	<record id="modelo_rel_action" model="ir.actions.act_window">
+		<field name="name">Action modelo.rel</field>
+		<field name="res_model">durhos.modelo.rel</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	<record id="view_modelo_rel_form" model="ir.ui.view" >
+		<field name="name">modelo.rel.form</field>
+		<field name="model">durhos.modelo.rel</field>
+		<field name="arch" type="xml">
+			<form string='relacion'>
+				<sheet>
+					<group>
+						<field name="modelo"/>
+						<field name="metal"/>
+						<field name="proporcion"/>
+						<field name="ley"/>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!--Definir los menuitems al final-->
+	<menuitem
+		id="durhos"
+		name="durhos"
+		sequence="10"/>
+	<menuitem
+		id="moneda"
+		name="moneda"
+		action="moneda_action"
+		parent="durhos"
+		sequence="10"/>
+	<menuitem
+		id="molde"
+		name="molde"
+		action="molde_action"
+		parent="durhos"
+		sequence="10"/>
+	<menuitem
+		id="modelo"
+		name="modelo"
+		action="modelo_action"
+		parent="durhos"
+		sequence="10"/>
+	<menuitem
+		id="metal"
+		name="metal"
+		action="metal_action"
+		parent="durhos"
+		sequence="10"/>
+	<menuitem
+		id="rel"
+		name="modelo_rel"
+		action="modelo_rel_action"
+		parent="durhos"
+		sequence="10"/>
+
+</odoo>
