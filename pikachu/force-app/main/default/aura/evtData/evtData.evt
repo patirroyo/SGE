@@ -1,4 +1,5 @@
-<aura:event type="APPLICATION" description="Event template">
+<aura:event type="APPLICATION" description="Event template"> <!--creeamo un transportador de objetos, esto será el transportador de mensajes-->
     <aura:attribute name="nombre" type="String"/>
     <aura:attribute name="apellido" type="String"/>
+
 </aura:event>
