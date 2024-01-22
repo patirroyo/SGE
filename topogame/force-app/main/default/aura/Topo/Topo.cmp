@@ -1,5 +1,5 @@
 <aura:component>
 	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/><!--cuando se inicia llama a la acción doInit que está en el controlador-->
-	<aura:application ty
+	<aura:attribute type="Boolean" name="isTopo"/>
 	<span class="topo" aura:id="topo" onclick="{!c.topoClick}">5</span> <!--el aura topo es para asignarle-->
 </aura:component>	

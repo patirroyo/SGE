@@ -1,3 +1,5 @@
 <aura:component>
-
+    <aura:handler event="c.Puntuacion" action="{!c.handleEvent}"/>
+    <aura:attribute name="marcador" type="Integer" default="0"/>
+    tu marcador es de: {!v.marcador} puntos
 </aura:component>	
