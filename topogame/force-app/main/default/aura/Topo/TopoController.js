@@ -4,14 +4,32 @@
         var topo = cmp.find("topo");
         //Math.random() < 0.5 ? $A.util.addClass(topo, 'active') : $A.util.addClass(topo, 'inactive') ;
         
-        var number =Math.random() ;
-        if(number < 0.5){
-            $A.util.addClass(topo, 'active');
-            cmp.set("v.isTopo", true)//para recuperar la variable de la vista isTopo y poder usarla en el componente
-        }else{
-            $A.util.addClass(topo, 'inactive');
-            cmp.set("v.isTopo", false) //para recuperar la variable de la vista isTopo y poder usarla en el componente, la usaré para decir si el usuario ha acertado o no
-        }
+        //var number = Math.random() ;
+        var randomNumberGenerator = cmp.get("c.random")
+
+        randomNumberGenerator.setCallback(this, function(response){
+            var estadoDeLaPeticion = response.getState();
+            if(estadoDeLaPeticion === "SUCCESS"){
+                var number = response.getReturnValue();
+                if(number < 0.5){
+                    $A.util.addClass(topo, 'active');
+                    cmp.set("v.isTopo", true)//para recuperar la variable de la vista isTopo y poder usarla en el componente
+                }else{
+                    $A.util.addClass(topo, 'inactive');
+                    cmp.set("v.isTopo", false) //para recuperar la variable de la vista isTopo y poder usarla en el componente, la usaré para decir si el usuario ha acertado o no
+                }
+            }else{
+                console.log("Error al generar el número aleatorio");
+            }
+        });
+        $A.enqueueAction(randomNumberGenerator);//manda la petición al servidor a la cola de acciones a ejecutar
+        // if(number < 0.5){
+        //     $A.util.addClass(topo, 'active');
+        //     cmp.set("v.isTopo", true)//para recuperar la variable de la vista isTopo y poder usarla en el componente
+        // }else{
+        //     $A.util.addClass(topo, 'inactive');
+        //     cmp.set("v.isTopo", false) //para recuperar la variable de la vista isTopo y poder usarla en el componente, la usaré para decir si el usuario ha acertado o no
+        // }
     
     },
     topoClick: function(cmp, event, helper){//esta función va a disparar un evento
