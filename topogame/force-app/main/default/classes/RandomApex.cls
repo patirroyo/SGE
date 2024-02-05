@@ -8,4 +8,20 @@ public with sharing class RandomApex {
     public static Double random() {
         return Math.random();
     }
+
+    @AuraEnabled
+    public static Void insertScore(String nombre, String puntuacion){
+        Account account = new Account(Name=nombre, BillingCity=puntuacion);//crea un nuevo registro de tipo Account
+        insert account;//inserta el registro en la base de datos
+    }
+
+    @AuraEnabled
+    public static List<Account> getListScores(){
+        try{
+            Account[] accounts = [SELECT Name, BillingCity FROM Account];
+            return accounts;
+        } catch(Exception e){
+            throw new AuraHandledException('e.getMessage()');
+        }
+    }
 }
