@@ -1,0 +1,35 @@
+<aura:component controller="Round">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="playerNumber" type="String" default="1"/>
+    <aura:attribute name="playerChoice" type="String" default="Nada"/>
+    <aura:attribute name="round" type="Integer" default="1"/>
+    
+
+    <div>
+        <h1>Rock, Paper, Scissors</h1>
+        <br></br><br></br>
+        <div>
+            <p>Selecciona tu jugador</p>
+            <br></br>
+            <div>
+                <lightning:button label="Player 1" onclick="{!c.player1}"/>
+                <lightning:button label="Player 2" onclick="{!c.player2}"/>
+            </div>
+            <br></br>
+            <p>Player: {!v.playerNumber}</p>
+            <br></br>
+            <p>Round: {!v.round}</p>
+        </div>
+        <br></br><br></br><br></br>
+        <div>
+            <lightning:button label="Rock" onclick="{!c.rock}"/>
+            <lightning:button label="Paper" onclick="{!c.paper}"/>
+            <lightning:button label="Scissors" onclick="{!c.scissors}"/>
+        </div>
+        <br></br><br></br><br></br>
+        <span>Juagador {!v.playerNumber} ha elegido {!v.playerChoice}</span>
+        <br></br><br></br>
+        <lightning:button label="Jugar" onclick="{!c.play}"/>
+    </div>
+    
+</aura:component>	
