@@ -23,6 +23,7 @@ public with sharing class Round {
                     String player2Choice = reqPlayer2[i].BillingCity;
 
                     Integer winner = rockPaperScissors(player1Choice, player2Choice);
+                    
                     Account player1Round = [SELECT Id FROM Account WHERE NumberOfEmployees = :i+1 AND BillingCountry = '1'];
                     Account player2Round = [SELECT Id FROM Account WHERE NumberOfEmployees = :i+1 AND BillingCountry = '2'];
                     Integer round = i+1;
@@ -44,12 +45,19 @@ public with sharing class Round {
     public static Integer rockPaperScissors(String player1, String player2) {
         if (player1 == player2) return 0;
         Map<String, String> winmap = new Map<String, String>{
-            'Rock' => 'Scissors',
-            'Paper' => 'Rock',
-            'Scissors' => 'Paper'
+            'Rock' => 'Paper',
+            'Paper' => 'Scissors',
+            'Scissors' => 'Rock'
         };
-        if (winmap.get(player1) == player2) return 1;
-        return 2;
+        System.debug('player1: '+player1 + ' player2: '+player2);
+        System.debug('player1winmap: '+winmap.get(player1) + ' player2: '+player2);
+        System.debug('player1: '+winmap.get(player1).charAt(0) + ' player2: '+player2.charAt(0));
+        if (winmap.get(player1) == player2){
+            return 2;
+        } 
+        else {
+            return 1;
+        }
         // System.debug(logLevel, o);
         // System.debug('player1: ' + player1);
         // System.debug('player2: ' + player2);
