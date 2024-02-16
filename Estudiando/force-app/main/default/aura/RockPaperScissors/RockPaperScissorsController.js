@@ -1,6 +1,28 @@
 ({
     doInit : function(component, event, helper) {
-        
+        var getRoundApex = component.get("c.getRound");
+        getRoundApex.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === "SUCCESS"){
+                var round = response.getReturnValue();
+                component.set("v.round", round);
+            }else{
+                return NaN;
+            }
+        });
+        $A.enqueueAction(getRoundApex);
+
+        var getPlayerApex = component.get("c.getPlayer");
+        getPlayerApex.setCallback(this, function(response){
+            var state = response.getState();
+            if(state === "SUCCESS"){
+                var player = response.getReturnValue();
+                component.set("v.playerNumber", player);
+            }else{
+                return NaN;
+            }
+        });
+        $A.enqueueAction(getPlayerApex);
     },
 
     rock : function(component, event, helper) {
@@ -15,24 +37,19 @@
         //alert('You selected Scissors');
         component.set("v.playerChoice", "Scissors");
     },
-    player1 : function(component, event, helper) {
-        //alert('You selected Player 1');
-        component.set("v.playerNumber", 1);
-    },
-    player2 : function(component, event, helper) {
-        alert('You selected Player 2');
-        component.set("v.playerNumber", 2);
-    },
+   
     play : function(component, event, helper) {
         var playerChoice = component.get("v.playerChoice");
         var playerNumber = component.get("v.playerNumber");
         var round = component.get("v.round");
         var insertRoundApex = component.get("c.insertRound");
-        alert("playerChoice: " + playerChoice + " playerNumber: " + playerNumber + " round: " + round);
+        console.log("playerChoice: " + playerChoice + " playerNumber: " + playerNumber + " round: " + round);
         insertRoundApex.setCallback(this, function(response){
             var state = response.getState();
             if(state === "SUCCESS"){
-                alert("exito")
+                console.log("Success");
+            }else{
+                console.log(response.getError());
             }
         });
 
@@ -42,6 +59,10 @@
             "playerChoice": playerChoice,
         });
         $A.enqueueAction(insertRoundApex);
+        
+        setTimeout(function(){
+            location.reload();
+        }, 100);
     }
 
 
