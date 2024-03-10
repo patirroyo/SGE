@@ -1,0 +1,15 @@
+<aura:application>
+	<c:topo/>
+	<c:topo/>
+	<c:topo/>
+	<c:topo/>  
+	<c:topo/>
+	<c:topo/>
+	<c:topo/>
+	<c:topo/>
+	<c:topo/>
+	<br/>
+	<c:Marcador/>
+	<br/>
+	<c:TablaComponentes/>
+</aura:application>	
